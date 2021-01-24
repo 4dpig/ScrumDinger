@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct DailyScrum {
+struct DailyScrum: Identifiable {
+    var id: UUID = UUID()
     var title: String
     var attendees: [String]
     var lengthInMinutes: Int
@@ -18,6 +19,7 @@ extension DailyScrum {
     static var data: [DailyScrum] {
         [
             DailyScrum(
+                id: UUID(),
                 title: "Design",
                 attendees: ["Cathy", "Daisy", "Simon", "Jonathan"],
                 lengthInMinutes: 10,

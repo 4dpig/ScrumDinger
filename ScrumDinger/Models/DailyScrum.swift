@@ -19,7 +19,6 @@ extension DailyScrum {
     static var data: [DailyScrum] {
         [
             DailyScrum(
-                id: UUID(),
                 title: "Design",
                 attendees: ["Cathy", "Daisy", "Simon", "Jonathan"],
                 lengthInMinutes: 10,

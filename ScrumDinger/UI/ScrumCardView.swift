@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CardView: View {
+struct ScrumCardView: View {
     let scrum: DailyScrum
     var body: some View {
         VStack(alignment: .leading) {
@@ -50,7 +50,7 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var scrum = DailyScrum.data[0]
     static var previews: some View {
-        CardView(scrum: scrum)
+        ScrumCardView(scrum: scrum)
             .background(scrum.color)
             .previewLayout(.fixed(width: 400, height: 80))
     }

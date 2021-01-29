@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+class A {
+    var a: Int = 1
+    init() {
+        
+    }
+}
+
 struct ScrumCardView: View {
     let scrum: DailyScrum
     var body: some View {

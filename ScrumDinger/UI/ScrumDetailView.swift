@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ScrumDetailView: View {
-    let scrum: DailyScrum
-    @State var isPresented = false
+    @Binding var scrum: DailyScrum
+    @State private var editableData: DailyScrum.EditableData = DailyScrum.EditableData()
+    @State private var isPresented = false
     
     var body: some View {
         List {
@@ -49,15 +50,19 @@ struct ScrumDetailView: View {
         .navigationTitle(scrum.title)
         .navigationBarItems(trailing: Button("Edit") {
             isPresented = true
+            // 根据当前scrum中的数据来获取一个editableData，将其作为用户编辑的初始值
+            editableData = scrum.editableData
         })
         .fullScreenCover(isPresented: $isPresented, content: {
             NavigationView {
-                ScrumEditView()
+                ScrumEditView(scrumData: $editableData)
                     .navigationTitle(scrum.title)
                     .navigationBarItems(leading: Button("Cancel") {
                         isPresented = false
                     }, trailing: Button("Done") {
                         isPresented = false
+                        // 更新scrum数据
+                        scrum.update(from: editableData)
                     })
             }
         })
@@ -68,7 +73,7 @@ struct ScrumDetailView: View {
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ScrumDetailView(scrum: DailyScrum.data[0])
+            ScrumDetailView(scrum: .constant(DailyScrum.data[0]))
         }
     }
 }

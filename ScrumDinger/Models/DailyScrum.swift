@@ -48,7 +48,14 @@ extension DailyScrum {
         var color: Color = Color.random
     }
     
-    var data: EditableData {
+    var editableData: EditableData {
         return EditableData(title: title, attendees: attendees, lengthInMinutes: Double(lengthInMinutes), color: color)
+    }
+    
+    mutating func update(from newData: EditableData) {
+        self.title = newData.title
+        self.attendees = newData.attendees
+        self.lengthInMinutes = Int(newData.lengthInMinutes)
+        self.color = newData.color
     }
 }
